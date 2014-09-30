@@ -15,6 +15,7 @@
 
   $scope.createPost = ->
     postData.createPost($scope.formData)
+    $scope.navHome()
 
   $scope.clearPost = ->
     $scope.formData.newPostTitle = ''
