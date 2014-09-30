@@ -21,6 +21,7 @@ Blog.config(['$routeProvider', ($routeProvider) ->
     .when('/post/new', { templateUrl: '../assets/mainCreatePost.html', controller: 'CreatePostCtrl' })
     .when('/post/:postId', { templateUrl: '../assets/mainPost.html', controller: 'PostCtrl' })
     .when('/post/:postId/edit', { templateUrl: '../assets/mainEditPost.html', controller: 'EditPostCtrl' })
+    .when('/post/:postId/delete', { controller: 'DeletePostCtrl' })
 
   # Default
   $routeProvider.otherwise({ templateUrl: '../assets/mainIndex.html', controller: 'IndexCtrl' })

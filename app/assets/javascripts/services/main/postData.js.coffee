@@ -76,6 +76,23 @@ angular.module('Blog').factory('postData', ['$http', ($http) ->
         secondDeferred.resolve()      
     )
 
+  postData.deletePost = (postId, deleteDeferred) ->
+    data = 
+      post:
+        id: postId
+
+    $http.delete('./posts/' + postId + '.json', data).success( (data) ->
+      postData.data.posts = _.without(postData.data.posts, _.findWhere(postData.data.posts, { id: parseInt(postId) }))
+      console.log("Successfully deleted post.")
+      if deleteDeferred
+        deleteDeferred.resolve()
+    ).error( ->
+      console.error("Failed to delete post.")
+      if deleteDeferred
+        deleteDeferred.resolve()
+    )
+  
+
   return postData
 
 ])

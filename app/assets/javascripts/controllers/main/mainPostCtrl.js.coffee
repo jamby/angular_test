@@ -15,7 +15,12 @@
     $location.url('/')
 
   $scope.editPost = ->
-    $location.url('/post/'+$scope.data.postId+'/edit/')
+    $location.url('/post/' + $scope.data.postId + '/edit/')
+
+  $scope.deletePost = ->
+    deleteDeferred = $q.defer()
+    deleteDeferred.promise.then($scope.navHome)
+    postData.deletePost($scope.data.postId, deleteDeferred)
 
   # This will be run once the loadPosts successfully completes (or immediately if data is already loaded)
   $scope.prepPostData = ->
