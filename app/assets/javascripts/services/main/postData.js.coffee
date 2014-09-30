@@ -47,7 +47,7 @@ angular.module('Blog').factory('postData', ['$http', ($http) ->
 
     return true
 
-  postData.editPost = (editPost) ->
+  postData.editPost = (editPost, secondDeferred) ->
     # Client-side data validation
     if editPost.editPostTitle == '' || editPost.editPostContents == ''
       alert("Neither the Title nor the Body are allowed to be left blank.")
@@ -67,13 +67,14 @@ angular.module('Blog').factory('postData', ['$http', ($http) ->
       post = _.findWhere(postData.data.posts, { id: parseInt(editPost.editPostId) })
       post.title = data.title
       post.contents = data.contents
-      postData.isUpdated = true
       console.log("Successfully edited post.")
+      if secondDeferred
+        secondDeferred.resolve()
     ).error( ->
       console.error("Failed to edit post.")
+      if secondDeferred
+        secondDeferred.resolve()      
     )
-    
-    return true
 
   return postData
 
