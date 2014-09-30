@@ -8,14 +8,32 @@
 </nav>
 
 <div class="container" style="margin-top: 40px">
-  <h1 class="text-center">{{ data.currentPost.title }}</h1>
-  <div class="row">
-    <p>{{ data.currentPost.contents }}</p>
-  </div>
-  <div class="row">
-    <button class="btn btn-default" ng-click="editPost()">Edit</button>
-    <div class="pull-right">
-      <button class="btn btn-danger" ng-click="deletePost()">Delete</button>
+  <div ng-hide="formShown">
+    <h1 class="text-center">{{ data.currentPost.title }}</h1>
+    <div class="row">
+      <p>{{ data.currentPost.contents }}</p>
     </div>
+    <div class="row">
+      <button class="btn btn-default" ng-click="toggleForm()">Edit</button>
+      <div class="pull-right">
+        <button class="btn btn-danger" ng-click="deletePost()">Delete</button>
+      </div>
+    </div>
+  </div>
+  <div ng-show="formShown">
+    <form role="form">
+      <fieldset>
+        <div class="form-group">
+          <label><strong>Title</strong></label>
+          <input class="col-md-12" ng-model="formData.editPostTitle" type="text" maxlength="250">
+        </div>
+        <div class="form-group">
+          <label><strong>Body</strong></label>
+          <textarea class="col-md-12" style="height: 250px" ng-model="formData.editPostContents"></textarea>
+        </div>
+        <button class="btn btn-primary" ng-click="editPost()">Save</button>
+        <button class="btn btn-danger pull-right" ng-click="toggleForm(); returnData()">Back</button>
+      </fieldset>
+    </form>
   </div>
 </div>
