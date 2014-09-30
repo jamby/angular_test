@@ -1,0 +1,16 @@
+<nav class="navbar navbar-default">
+  <div class="navbar-header">
+    <a href="#" class="navbar-brand">My blog</a>
+  </div>
+  <ul class="nav navbar-nav navbar-right">
+    <li><a ng-click="navNewPost()">New Post</a></li>
+  </ul>
+</nav>
+
+<div class="container" style="margin-top: 40px">
+  <h1 class="text-center">My blog</h1>
+  <div class="row" ng-repeat="post in data.posts">
+    <h2><a ng-click="viewPost(post.id)">{{ post.title }}</a></h2>
+    <p>{{ post.contents }}</p>
+  </div>
+</div>
