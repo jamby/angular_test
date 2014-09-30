@@ -54,9 +54,6 @@ angular.module('Blog').factory('postData', ['$http', ($http) ->
       return false
 
     # Create data object to PUT
-    console.log("wtf")
-    console.log(editPost)
-    # console.log(editPost.editPostContents)
     data =
       post:
         title: editPost.editPostTitle

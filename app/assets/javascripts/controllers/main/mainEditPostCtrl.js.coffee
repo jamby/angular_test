@@ -24,7 +24,6 @@
     secondDeferred.promise.then($scope.backPost)
     postData.editPost($scope.formData, secondDeferred)
     
-
   $scope.backPost = ->
     console.log("test")
     $location.url("/post/" + $routeParams.postId)
@@ -32,7 +31,6 @@
   # This will be run once the loadPosts successfully completes (or immediately if data is already loaded)
   $scope.prepPostData = ->
     post = _.findWhere(postData.data.posts, { id: parseInt($scope.data.postId) })
-    console.log(post);
     $scope.data.currentPost.title = post.title
     $scope.data.currentPost.contents = post.contents
     $scope.formData.editPostTitle = post.title
